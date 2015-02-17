@@ -7,8 +7,11 @@ Configuration object for pycmt3d
 import numpy as np
 
 class Config(object):
-
-    def __init__(self, npar, dlocation, ddepth, dmoment, ddelta,
+    '''
+    The default values of ddepth, domement, and ddelta are based on empiricism
+    The unit of dmoment is dyne*cm
+    '''
+    def __init__(self, npar, dlocation, ddepth=0.02, dmoment=1.0e22, ddelta=0.01,
                  weight_data=True, weight_function=None,
                  station_correction=True, zero_trace=True,
                  double_couple=True, lamda_damping=0.0):
@@ -26,7 +29,7 @@ class Config(object):
 
         self.par_name = ("Mrr", "Mtt", "Mpp", "Mrt", "Mrp", "Mtp",
                          "dep", "lon", "lat", "ctm", "hdr")
-        self.scale_par = np.array([SCALE_MOMENT, SCALE_MOMENT, SCALE_MOMENT, SCALE_MOMENT
+        self.scale_par = np.array([SCALE_MOMENT, SCALE_MOMENT, SCALE_MOMENT, SCALE_MOMENT,
                           SCALE_MOMENT, SCALE_MOMENT, SCALE_DEPTH, SCALE_DDELTA,
                           SCALE_DDELTA, SCALE_CTIME, SCALE_HDR])
         self.dcmt_par = np.array([dmoment, dmoment, dmoment, dmoment, dmoment,
